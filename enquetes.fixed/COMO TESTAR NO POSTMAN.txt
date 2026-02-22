@@ -1,0 +1,86 @@
+Testando o SISTEMA DE ENQUETES no Postman ---->
+
+Abra a pasta do programa e rode.
+O segundo passo é abrir o Postman e começar a testar.
+
+*MÉTODO GET
+--- Irá expor as enquetes que estão em nosso programa. Já tem uma padrão.
+EX.: http://localhost:8080/enquetes para ter acesso às enquetes.
+
+*MÉTODO POST
+
+--- Criando uma Enquete:
+
+////
+
+{
+	"pergunta": "Quantos anos você tinha quando começou a programar pela primeira vez?",
+	"opcoes": [
+	{	"texto": "-18" },
+	{	"texto": "19-25" },
+	{	"texto": "26-35" },
+	{	"texto": "36-50" },
+	{	"texto": "51+" }
+	]
+}
+
+/////
+
+Na URL http://localhost:8080/enquetes. O banco de dados irá criar um ID novinho para a enquete recém adicionada.
+
+(Sempre em JSON Raw)
+
+--- Também é possível contabilizar os votos naquela enquete por seu id.
+EX.: Cada opção dentro das enquetes têm um ID ---->
+
+////
+
+[
+    {
+        "id": 1,
+        "pergunta": "Qual sua linguagem de back-end favorita?",
+        "opcoes": [
+            {
+                "id": 1,
+                "texto": "Java (Spring)",
+                "totalVotos": 0
+            },
+            {
+                "id": 2,
+                "texto": "Python (Django)",
+                "totalVotos": 0
+            },
+            {
+                "id": 3,
+                "texto": "JavaScript (Node.js)",
+                "totalVotos": 0
+            }
+        ]
+    }
+]
+
+////
+
+Para votar na opção "Python (Django)", por exemplo, é preciso colocar o método POST e a URL http://localhost:8080/votos/2. O banco de dados irá contabilizar o voto automaticamente.
+
+*MÉTODO PUT
+
+--- É possível atualizar uma pergunta de qualquer enquete.
+EX.:
+
+////
+
+{
+    "pergunta": "Qual o melhor?"
+}
+
+////
+
+Na URL http://localhost:8080/enquetes/1 (ou o número de ID da enquete que você quer editar).
+
+*MÉTODO DELETE
+
+--- É possível deletar qualquer enquete do banco de dados.
+EX.: É preciso apenas digitar a URL específica da enquete que você quer deletar e pressionar SEND. http://localhost:8080/enquetes/2, por exemplo, deletará a enquete 2 que foi adicionada.
+
+
